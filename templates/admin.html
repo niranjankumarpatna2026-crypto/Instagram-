@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Panel</title>
+<style>
+body{font-family:Segoe UI;background:#fad0c4;padding:20px}
+.box{background:white;padding:20px;border-radius:12px;margin-bottom:20px}
+input{padding:8px;margin:5px}
+button{padding:8px;background:#ff0066;color:white;border:none}
+img{width:50px;border-radius:50%}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>Change Current Day</h2>
+<form method="post">
+<input name="currentday" value="{{day}}">
+<button name="setday">Update</button>
+</form>
+</div>
+
+<div class="box">
+<h2>Add Follower</h2>
+<form method="post" enctype="multipart/form-data">
+<input name="name" placeholder="Name"><br>
+<input name="insta" placeholder="Instagram"><br>
+<input name="link" placeholder="Profile Link"><br>
+<input name="day" placeholder="Day Text"><br>
+<input type="file" name="img"><br>
+<button>Add</button>
+</form>
+</div>
+
+<div class="box">
+<h2>All Followers</h2>
+{% for f in followers %}
+<p>
+<img src="/uploads/{{f.img}}">
+{{f.name}} - {{f.day}}
+<a href="/delete/{{f.id}}">❌ Delete</a>
+</p>
+{% endfor %}
+</div>
+
+<button onclick="location.href='/'">⬅ Back to Main Page</button>
+
+</body>
+</html>
